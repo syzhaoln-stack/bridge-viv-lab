@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>模型与依据 · 桥梁减振对照实验室</title>
+  <style>
+    :root{--ink:#203e54;--muted:#627989;--line:#d9e3e9;--blue:#176d9a;--paper:#fff;--bg:#f1f5f7}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.85 system-ui,-apple-system,"Segoe UI","Microsoft YaHei",sans-serif}main{max-width:940px;margin:36px auto 64px;padding:36px 44px;background:var(--paper);border:1px solid var(--line);border-radius:16px}nav{font-size:14px}a{color:var(--blue);text-underline-offset:3px}a:focus-visible{outline:3px solid #75b9de;outline-offset:4px}header{border-bottom:1px solid var(--line);padding:16px 0 24px}h1{font-size:32px;line-height:1.3;margin:14px 0}h2{font-size:21px;margin:30px 0 10px}p{margin:10px 0}.lead{font-size:18px;line-height:1.8}.eyebrow,footer{font-size:13px;color:var(--muted)}.formula{padding:14px 18px;border-left:3px solid #3a8db8;background:#f3f7fa;overflow-wrap:anywhere;font-family:ui-monospace,"Cascadia Code",Consolas,monospace}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.card{padding:16px 19px;background:#f5f8fa;border:1px solid var(--line);border-radius:10px}.card h3{font-size:17px;margin:0 0 6px}.card p{font-size:15px;margin:0}.source-list{padding-left:23px;font-size:14px}.source-list li{padding:4px 0}.note{font-size:14px;color:var(--muted)}footer{margin-top:28px;padding-top:16px;border-top:1px solid var(--line)}@media(max-width:650px){main{margin:0;border:0;border-radius:0;padding:24px 20px 40px}h1{font-size:27px}.grid{grid-template-columns:1fr}body{font-size:15px}}
+  </style>
+</head>
+<body>
+<main>
+  <nav><a href="index.html">← 返回减振对照实验室</a></nav>
+  <header>
+    <div class="eyebrow">模型与依据 · 教师参考</div>
+    <h1>减振措施改变了什么？</h1>
+    <p class="lead">改断面，改变气动激励；加阻尼，增加能量耗散；改索系，改变刚度和振型。比较结果之前，先确认两侧算的是同一种物理问题。</p>
+  </header>
+
+  <section aria-labelledby="courses">
+    <h2 id="courses">01　两节课，两类问题</h2>
+    <p><strong>认识涡振：</strong>默认显示流场、实际计算运动、对比时程与频谱，再逐项改变风速、阻尼、质量和刚度；用同一箱梁有／无连续水马的对照连接虎门案例。圆柱保留为机理对照。</p>
+    <p><strong>减振与控制：</strong>依次进入气动措施、阻尼与TMD、空间索系、主动控制。不同页使用不同模型，参数和量纲分别声明；不能把各页当作同一座桥的连续设计过程。</p>
+    <p>手机上同时保留流场、运动和下方分析图，再点“调参数”，改一个量后“收起参数”，用“看运动”返回实验。主动控制、空间索系有各自的参数跳转。长公式与依据可展开阅读。涡振运动图使用实验室坐标，默认显示放大10倍，A/B同尺度；放大只改变画面，读数仍为求解值。流场采用随体坐标，因此断面居中不代表没有运动。</p>
+  </section>
+
+  <section aria-labelledby="scruton">
+    <h2 id="scruton">02　风速、尺度、阻尼和刚度怎样关联</h2>
+    <p>m为单位长度质量，ζ为结构阻尼比，ρ为空气密度，D为明确声明的梁高或圆柱直径。本课采用以下约定：</p>
+    <div class="formula">Sc = 4πmζ / (ρD²)<br>fₙ = √(k/m) / (2π)　　ζ = c / (2√(km))<br>fₛ ≈ St·U/D　　Uᵣ = U/(fₙD)　　Re = UD/ν</div>
+    <p>质量与阻尼比增大可提高Sc；保持m和ζ时，刚度增大主要提高fₙ，并不直接提高Sc。若固定的是黏滞系数c，增刚度反而会降低ζ。本页调ζ时，求解器相应调整c。</p>
+    <p>箱梁实验定义m*=m/(ρD²)，因此Sc=4πm*ζ；圆柱定义m*=4m/(πρD²)，因此Sc=π²m*ζ。两种m*的数值不可直接当作同一质量比。默认m*=10是为展示流固反馈而选的轻质量教学值，不等同结构页20,000 kg/m的桥梁算例。</p>
+    <p>固定断面、同一流动范围内，U增大通常使脱涡频率fₛ增大，D增大通常使其降低；结构固有频率不会仅因风速升高而同步升高。接近同步区后，实际频率可能偏离这条线。St依断面、攻角与Re而变，不是通用常数。</p>
+    <p>“风速、尺度、频率与雷诺数”是独立工程关系计算器，ν取1.5×10⁻⁵ m²/s；它不改变上方低Re CFD。U₀=fₙD/St只是频率交会的预估位置，不是已识别的锁定边界或安全风速。实时取点来自当前共同数值窗口，未满三周期的谱峰不作为稳定频率；同一系列必须保持其他参数一致。频率接近只是同步线索，仍须跨风速、足够时长的证据。</p>
+    <p class="note">FHWA拉索报告的Sc₀=mζ/(ρD²)与本课相差4π；针对特定拉索雨风振的限值，不能直接套用桥面涡振。<a href="#ref1">[1]</a>、<a href="#ref2">[2]</a></p>
+  </section>
+
+  <section aria-labelledby="spectra">
+    <h2 id="spectra">时程、频谱与同步候选区</h2>
+    <p>时程和频谱共用15/30/60/120的无量纲时间窗，默认120。频谱采用去均值、Hann窗，提供绝对幅值谱与PSD；A/B共用纵轴，不分别把峰值归一到1。频率轴为fD/Uref，可选低频0–0.6或全部采样频率。分辨率约1/Δt，补零不增加物理分辨率；短窗可以显示谱形，但不能把未满三周期的峰当作稳定频率。当前频谱可导出CSV。</p>
+    <p>圆柱参考来自9个真实计算工况（6可动、3固定），每点独立起算至t*=240，统计末120。Re_ref=100固定黏性，实际Re随风速为70–130。当前离散点筛出的Uᵣ=5.3125–6.25仅是频率同步候选，不是精确锁定边界、当前箱梁结果或实桥锁定区。至少3个同条件相邻点且具有足够周期、稳定半窗及非高频主导才参与候选；还需尾流同步、相位、扫速方向与收敛证据。</p>
+    <p>Re_ref改变黏性，不减少网格和步数；降低Re不保证峰值更大。轻量D6与默认D8的同机短基准耗时比约0.424，但匹配算例的幅值差异明显：水马位移RMS约+128%、升力波动RMS约+124%。不能把数值离散的差别当作物理减振效果。此处数据是有限窗对比，不是网格收敛验证。<a href="#ref22">[22]</a>、<a href="#ref23">[23]</a></p>
+  </section>
+
+  <section aria-labelledby="models">
+    <h2 id="models">03　各模型回答什么问题</h2>
+    <p><strong>涡振双向流固耦合：</strong>二维低Re流场产生气动力，驱动竖向单自由度结构，运动再反馈给流体。可选流线箱梁、同母型加连续水马和圆柱；桥梁域44D×14D。Re_ref可选60/80/100/120，实际Re=Re_ref×U*；默认Re_ref=100，U*=0.5–1.5。默认D8格，D6为更粗的定性观察档。这里没有桥梁扭转、三维效应或实桥高Re校准，也未预先指定锁定区。t*=tUref/D、y/D为无量纲量。</p>
+    <p><strong>气动措施：</strong>固定断面D2Q9 CFD比较低Re绕流，瞬时升力系数映射为竖向线荷载后输入12单元梁FEM；桥面运动不反馈流体，属于单向耦合。CL、CD在本页以梁高D归一化。映射风速只改变示例荷载和时间换算；固定Re改U会同时改变等效黏度，不是真实空气扫风速。</p>
+    <p><strong>阻尼与TMD：</strong>12个Euler–Bernoulli梁单元，一致质量矩阵，保留4个竖弯模态；TMD增加独立自由度。计算假定谐波升力下的稳态频响。它说明阻尼、频率、调谐与装置行程，响应峰不能直接称为涡振锁定区。</p>
+    <p><strong>空间索系：</strong>14坐标Ritz降阶模型表示主梁与双主缆的纵、侧、竖、扭运动，按索方向和给定预张力参数组装线性切线刚度，求解频率与振型。基础频率是教学输入；预设抛物线未做自重找形、初始平衡、松弛或非线性验算，不能称完整悬索桥FEM。</p>
+    <p><strong>主动控制：</strong>双翼子实验参考用户XNScript的控制函数、几何、结构参数和驱动限制，采用未标定翼力映射积分竖弯与扭转方程。反馈原理子实验接入梁FEM一阶模态、时延、执行器动态和限幅。两者都没有计算翼片或喷吸口CFD；箭头是执行状态示意。</p>
+    <p class="note">分清涡振、抖振与颤振：它们分别涉及流固同步、湍流随机激励与自激失稳。启动瞬态、单一频率交会或一个模型的增幅，都不能替代其他问题的判据。</p>
+  </section>
+
+  <section aria-labelledby="reading">
+    <h2 id="reading">04　为何升力较小，位移仍可能较大</h2>
+    <p>读图可分别选择CL、CD、竖向荷载和跨中位移。CL对应竖向升力并驱动当前竖弯模型；CD对应顺风向阻力，未作为竖弯力输入。两种系数、线荷载和位移的单位不同，不能拿曲线高低直接互相比大小。</p>
+    <div class="formula">L′(t) = ½ρU²D·CL(t)　[N/m]<br>结构响应还取决于荷载频率、相位、模态投影、质量、刚度和阻尼。</div>
+    <p>平均升力改变平衡位置；升力波动是另一个量。较低的CL波动若更接近结构共振频率，仍可能造成较大位移；双向耦合还会改变气动力本身。应保持同一工况、共同尺度、相同统计窗，分别比较平均量、波动量和结构响应。添加导流板等措施后增振，也应如实显示，不能预设一个减振率。</p>
+  </section>
+
+  <section aria-labelledby="section-construction">
+    <h2 id="section-construction">05　构造参考与放大数值模型分开</h2>
+    <p><strong>剖切方向与母型：</strong>横桥向剖面中，来流从左向右，桥轴垂直屏幕。矩形只作对照；附件采用流线箱梁母体。默认A“匹配流线母型”用于隔离附件；矩形综合对照同时改变母梁和附件。气动数值模型B/D=8，映射D=4 m、B=32 m；结构频响页是另一独立算例。</p>
+    <p><strong>轨道与导流板：</strong>默认先显示文献尺寸参考总图及局部放大，不启动这两类CFD。只有明确勾选“运行放大构件数值示教（非实桥比例）”，才运行原粗网格构件。参考图与数值固壁是两套用途明确的几何；放大固壁所得荷载不能冒充原型小构件效果。</p>
+    <p>2015年试验桥全宽42 m、梁高3.5 m。表2方案7内侧导流板长1 m、23°，板轨水平间距0.265 m，轨道自底板外缘向内2.4 m；板在梁底轨道内侧，靠中线端较高、靠轨道端较低，确有梁底导流板构造。该图未给轨高、轨宽和板厚，参考图对此保留未知。该文方案14是紧贴风嘴的水平1.25 m分流板，属于另一位置，不能画成下挂板。论文中梁底轨道板改善有限，风嘴板效果也随位置变化。<a href="#ref9">[9]</a></p>
+    <p>2023年另一试验桥宽39.6 m、高3 m，轨高320 mm、宽130 mm、腹板10 mm；图4的1／2.5／5 m是向内横移距离，不是下挂高度。图3照片可见轨道贴近梁底。未标明的翼缘厚度与安装高度不虚构为来源尺寸；这些数据也不拿来填补2015年桥的未知尺寸。<a href="#ref6">[6]</a></p>
+    <p><strong>其他附件：</strong>中央稳定板可选上、下或组合，沿桥轴延伸。栏杆按本课堂要求表示一排圆管横杆，两侧各一个同高小圆；间隔立柱不在二维模型中。开槽箱梁为两个外侧带风嘴、斜底的箱体与中央贯通槽，数值教学取g=D、g/B=12.5%，剖面位于连接横梁之间；质量、EI、阻尼保持不变，不代表真实开槽改造后的全部结构变化。<a href="#ref3">[3]</a>、<a href="#ref10">[10]</a>、<a href="#ref11">[11]</a>、<a href="#ref12">[12]</a></p>
+    <p class="note">固定断面数值图与固壁共用几何定义，小圆、薄板和通道仍受粗网格放大限制；文献尺寸参考图单独标明来源和未知尺寸。构造外形核对与CFD网格检查不等于施工尺寸、网格收敛或实桥性能验证。栏杆、轨道和导流板的作用依尺寸、位置、攻角及风况而变。<a href="#ref4">[4]</a>、<a href="#ref5">[5]</a></p>
+  </section>
+
+  <section aria-labelledby="humen">
+    <h2 id="humen">06　虎门大桥：按三个状态讲清楚</h2>
+    <div class="grid">
+      <article class="card"><h3>原有气动断面</h3><p>主跨888 m的钢箱梁悬索桥。护栏等附件共同构成气动外形；有流线风嘴不能单独保证没有涡振。</p></article>
+      <article class="card"><h3>连续设置水马</h3><p>广东省交通运输厅通报指出，沿边护栏连续设置水马改变气动外形，在特定风况下诱发竖向涡激共振。</p></article>
+      <article class="card"><h3>移除与后续处置</h3><p>通报还说明持续较大振动后阻尼降低，移除水马后特定风况空载桥仍有涡振；后续采用外侧护栏抑流板、水箱压重等措施。不能简化为“拆除即恢复原振幅”。</p></article>
+    </div>
+    <p>上述为2020年5月15日官方通报的概括；检测评估认为结构安全，并于当天恢复交通。现场照片可用于核对桥面两侧连续布置位置。<a href="#ref13">[13]</a>、<a href="#ref14">[14]</a></p>
+    <p>网页“无水马／连续水马”只在同一教学流线箱梁上增加边缘实心构件，保持两组风况、质量、刚度和1%阻尼一致。它隔离外形影响，不模拟实际桥从安装、拆除到处置的历史，也不复现虎门实桥断面、实测振幅或锁定区。网页其他气动措施仍允许比较独立教学几何。</p>
+  </section>
+
+  <section aria-labelledby="spatial">
+    <h2 id="spatial">07　空间索系：看方向、频率和振型</h2>
+    <p>交叉吊索位于两侧缆面内，连接主缆与主梁；抗风索示教为桥外固定锚点的空间拉索，作用随方向和预张力参数改变。本页未复制文献完整三维抗风索体系，也未移植特定桥的颤振改善比例。<a href="#ref7">[7]</a>、<a href="#ref8">[8]</a></p>
+    <p>中央扣以跨中缆梁的相对纵向约束表示，采用纵向剪切耦合；图中的竖线是连接构造符号，不是一根新增竖向弹簧。<a href="#ref21">[21]</a></p>
+    <p>模型用质量加权MAC匹配A/B振型，相似度低时不能直接当同一模态。动画先将各自主梁峰值归一到0.10 m，再乘共同显示倍数；振型幅值任意，不能据动画高低计算减振率。频率、方向与模态形状才是这一页的比较对象。</p>
+  </section>
+
+  <section aria-labelledby="active-controls">
+    <h2 id="active-controls">08　主动控制：控制律、执行过程与气动作用</h2>
+    <p><strong>脚本双翼：</strong>参考用户“小牛CFD / 8 桥梁气动控制面主动控制.XNScript”，主梁约31.01×4.4 m，两片3 m翼中心位于(±18.5,6) m；m=22,740 kg/m，I=2.47×10⁶ kg·m²/m，竖弯0.100 Hz、扭转0.278 Hz，ζ=0.001。保留1 s释放、初始扭转角速度10°/s与下列源函数。</p>
+    <div class="formula">s = 0（|θ̇| &lt; 0.001 rad/s），否则s=sign(θ̇)<br>βL=+6°−10°·s−2θ；βR=−6°+10°·s+2θ<br>驱动目标α=−β；角速度上限90°/s，角加速度上限360°/s²</div>
+    <p>函数输出、驱动目标与实际翼角不同。±6°偏置可能先供能并改变平衡角，倍率设为0仍保留偏置，关闭翼力才移除全部控制力。网页用未标定线性翼升力和固定力臂计算响应，没有移植主梁动网格LES、自激气动力、翼梁干扰或临界风速。完全对称假设下双翼合竖力为零，不人为制造竖向运动。20°或1 m的停止值是教学阈值，不是实桥限值。</p>
+    <p><strong>反馈原理：</strong>一阶模态满足Mq̈+Cq̇+Kq=Qw+Qc。理想即时负速度反馈Qc=−gq̇，控制机械功率为−gq̇²，抽取结构能量；位移负反馈主要改变刚度。时延、执行器动态或饱和会改变实际作用，半周期时延可令名义负反馈供能。应看实际力与速度的相位、控制做功，不只看代码正负号。<a href="#ref15">[15]</a>、<a href="#ref16">[16]</a></p>
+    <p><strong>“滞后”是什么：</strong>测量／通信时延τ是晚收到信号；响应时间常数Tₐ描述执行器如何逐渐建立输出，模型为Tₐȧ+a=a目标。收到阶跃后Tₐ时达到63.2%，3Tₐ约95%，不是人为等待。输出上限就是最大力、最大翼角或最大流量；需求超过能力便饱和。页面分别画期望力、限幅目标和实际力，均为广义力kN。源双翼另受角速与角加速度约束。<a href="#ref20">[20]</a></p>
+    <p><strong>吹吸不是任意给一个力：</strong>喷口既有动量交换，也能改变分离、压力分布和尾流，使主梁气动力变化；后一条路径必须通过CFD或试验标定。网页使用可调的未标定k=ΔCL/Q，Q为整套装置当前开启喷口组总流量，A为同组总面积，上下口流量分别非负，符号只表示换口。ΔCL在此以桥宽B归一化，假设沿全跨均匀。<a href="#ref17">[17]</a>、<a href="#ref18">[18]</a></p>
+    <div class="formula">V孔=Q/A；动量通量=ρQV孔<br>假定总升力增量ΔL=½ρU²BL·kQ<br>一阶广义力Qc=½ρU²B(∫φdx)·kQ</div>
+    <p>例如Q=1 m³/s、A=0.05 m²、ρ=1.225 kg/m³，孔速为20 m/s，动量项24.5 N，孔口动能率245 W。若另行假定U=10 m/s、B=32 m、L=300 m、ΔCL=0.02，则总气动力增量11.760 kN、模态广义力约7.4866 kN。后者来自未标定气动假设，不能由24.5 N直接推出；网页因此分别显示它们。</p>
+    <p>对吹气，忽略入口动量、压力差等条件下，ρQV孔才可作为反力量级；对吸气，它只是流入动量通量，不能直接叫吸力或净升力。孔口动能率不是设备电耗；吸气时也不是通用功率下限。结构机械控制功率Qc·q̇与风机／电机耗电需分开。喷吸参数中的风速只改变执行器换算，外激励仍为所选30 kN谐波或自由衰减，不能当真实风速扫描。<a href="#ref19">[19]</a></p>
+  </section>
+
+  <section aria-labelledby="verification">
+    <h2 id="verification">09　核验记录的范围</h2>
+    <p>静止断面CFD沿用源码哈希一致的18组旧核验，未为真实尺寸参考图新增或改写CFD。既有桥梁双向耦合历史报告记录8个有限时长算例与7项几何／接口检查：默认A/B和同结构水马至t*=100，风速端点等工况至少至60，保存24,000条未滤波采样记录与600条稳定性快照。</p>
+    <p>本轮Re／网格选项5项接口与11个有限时段工况、频谱与候选筛选11项、圆柱参考9个至t*=240工况通过；主动控制21项、空间索系9项、文献几何6项记录沿用，分别覆盖方程实现、参数来源和模型边界。结果文件保存源码哈希。数值稳定或方程自洽不等于网格收敛、气动标定或实桥验证；手机触控、排版与离线加载另以最终交付浏览器记录为准，不由这些数值检查代替。</p>
+  </section>
+
+  <section aria-labelledby="sources">
+    <h2 id="sources">一手资料</h2>
+    <ol class="source-list">
+      <li id="ref1"><a href="https://www.fhwa.dot.gov/publications/research/infrastructure/bridge/05083/chap3.cfm" target="_blank" rel="noopener noreferrer">FHWA：拉索风致振动的分析、评价与试验</a>；<a href="https://www.fhwa.dot.gov/publications/research/infrastructure/bridge/05083/chap4.cfm" target="_blank" rel="noopener noreferrer">设计建议与适用条件</a>。</li>
+      <li id="ref2"><a href="https://link.springer.com/article/10.1007/s43452-022-00547-w" target="_blank" rel="noopener noreferrer">流固动力相似准则推导</a>：式 88 给出含对数衰减率的 Scruton 定义，轻阻尼时对应本课约定。</li>
+      <li id="ref3"><a href="https://zgglxb.chd.edu.cn/CN/Y2017/V30/I7/86" target="_blank" rel="noopener noreferrer">上、下组合中央稳定板对于箱梁颤振性能的影响</a>：节段模型风洞试验。</li>
+      <li id="ref4"><a href="https://www.sciencedirect.com/science/article/pii/S0141029623001761" target="_blank" rel="noopener noreferrer">可动导流板构型与双箱梁涡振控制</a>：不同布置的风洞对照。</li>
+      <li id="ref5"><a href="https://www.mdpi.com/2076-3417/13/16/9314" target="_blank" rel="noopener noreferrer">双层大跨悬索桥的栏杆涡振效应</a>：风洞试验与 CFD。</li>
+      <li id="ref6"><a href="https://www.frontiersin.org/journals/built-environment/articles/10.3389/fbuil.2023.1264996/full" target="_blank" rel="noopener noreferrer">检修轨道位置对箱梁悬索桥涡振的影响</a>：测振与表面测压。</li>
+      <li id="ref7"><a href="https://manu36.magtech.com.cn/Jwk_tmgcxb/CN/abstract/abstract348.shtml" target="_blank" rel="noopener noreferrer">交叉吊索对超大跨 CFRP 主缆悬索桥颤振性能的改善作用</a>：频率、振型与耦合颤振分析。</li>
+      <li id="ref8"><a href="https://ascelibrary.org/doi/10.1061/%28ASCE%29BE.1943-5592.0001942" target="_blank" rel="noopener noreferrer">悬索桥三维抗风索体系找形</a>；<a href="https://www.fhwa.dot.gov/publications/research/infrastructure/bridge/05084/" target="_blank" rel="noopener noreferrer">FHWA：斜拉索联结体系的全局与局部模态</a>。</li>
+      <li id="ref9"><a href="https://html.rhhz.net/SYLTLX/html/2015-2-48.htm" target="_blank" rel="noopener noreferrer">张建等：基于节段模型试验的悬索桥涡振性能优化研究（2015）</a>，表2；<a href="https://html.rhhz.net/SYLTLX/html/PIC/2015-2-48-T2.jpg" target="_blank" rel="noopener noreferrer">轨道内侧导流板原图</a>。本页已核对图形，未把文献最优参数视为通用结论。</li>
+      <li id="ref10"><a href="https://html.rhhz.net/SYLTLX/html/2015-4-52.htm" target="_blank" rel="noopener noreferrer">板-桁组合式钢桁梁悬索桥颤振稳定性选型研究（2015）</a>，图5、表4；<a href="https://html.rhhz.net/SYLTLX/html/PIC/20150407-5.jpg" target="_blank" rel="noopener noreferrer">中央板横断面与桥向布置原图</a>。仅参考板的空间方向，不将桁架梁尺寸照搬到箱梁。</li>
+      <li id="ref11"><a href="https://html.rhhz.net/SYLTLX/html/2016-1-68.htm" target="_blank" rel="noopener noreferrer">开槽箱梁相关节段模型研究（2016）</a>；<a href="https://html.rhhz.net/SYLTLX/html/PIC/2016-1-68-1.jpg" target="_blank" rel="noopener noreferrer">原文图1：开槽双箱断面</a>。仅参考中央贯通槽与双箱构型。</li>
+      <li id="ref12"><a href="https://www.sciencedirect.com/science/article/pii/S0889974621001638" target="_blank" rel="noopener noreferrer">双箱梁槽宽与涡振气动效应研究（2021）</a>：槽宽和断面条件影响气动表现，不能将开槽等同于固定减振率。</li>
+      <li id="ref13"><a href="https://td.gd.gov.cn/gkmlpt/content/2/2994/post_2994913.html?jump=false" target="_blank" rel="noopener noreferrer">广东省交通运输厅：虎门大桥5月15日9时恢复交通（2020-05-15）</a>：沿护栏连续水马改变钢箱梁气动外形及特定风况下的竖向涡激共振。</li>
+      <li id="ref14"><a href="https://news.cctv.com/2020/05/07/ARTIDDEQRCHs9yC4O6yxHYtu200507.shtml" target="_blank" rel="noopener noreferrer">央视新闻：虎门大桥水马与异常振动报道（2020-05-07）</a>；<a href="https://p5.img.cctvpic.com/photoworkspace/contentimg/2020/05/07/2020050709100026661.jpg" target="_blank" rel="noopener noreferrer">桥面两侧连续水马现场照片</a>。照片用于核对布置位置，本页模型不照搬实桥断面。</li>
+      <li id="ref15"><a href="https://ascelibrary.com/doi/10.1061/%28ASCE%290733-9399%282001%29127%3A1%2880%29" target="_blank" rel="noopener noreferrer">Wilde、Omenzetter、Fujino（2001）：桥梁主动气动控制研究</a>，主动翼板与反馈设计。</li>
+      <li id="ref16"><a href="https://www.sciencedirect.com/science/article/pii/S0141029624000191" target="_blank" rel="noopener noreferrer">Wang等（2024）：宽开槽桥面主动翼板控制研究</a>，控制增益与相位的作用。</li>
+      <li id="ref17"><a href="https://www.sciencedirect.com/science/article/pii/S016761052100146X" target="_blank" rel="noopener noreferrer">Xue等（2021）：桥面外部吹气/吸气风洞研究</a>，沿桥向交替布置具有三维效应。</li>
+      <li id="ref18"><a href="https://hrcak.srce.hr/en/181509" target="_blank" rel="noopener noreferrer">Tao、Tang、Liu（2017）：桥梁吸气控制研究</a>，吸气位置与气动响应。</li>
+      <li id="ref19"><a href="https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/thrust-force/" target="_blank" rel="noopener noreferrer">NASA：推力、动量通量与压力项</a>。喷口动量不是桥面总升力，净力还取决于控制体和压力边界。</li>
+      <li id="ref20"><a href="https://www.mathworks.com/help/hydro/ref/proportionalandservovalveactuator.html" target="_blank" rel="noopener noreferrer">MathWorks：比例／伺服阀执行器动态</a>。用时间常数描述响应建立过程；本页采用一阶教学模型。</li>
+      <li id="ref21"><a href="https://ascelibrary.org/doi/abs/10.1061/%28ASCE%29BE.1943-5592.0001386" target="_blank" rel="noopener noreferrer">Liu等（2019）：长跨悬索桥吊索运动的监测与比较</a>，缆梁相对纵向运动及跨中中央连接的作用。</li>
+      <li id="ref22"><a href="https://www.annualreviews.org/content/journals/10.1146/annurev.fluid.36.050802.122128" target="_blank" rel="noopener noreferrer">Williamson与Govardhan（2004）：涡激振动综述</a>，质量、阻尼、尾流与同步机理。</li>
+      <li id="ref23"><a href="https://discovery.ucl.ac.uk/id/eprint/10129899/" target="_blank" rel="noopener noreferrer">Jiao与Wu（2021）：Re对圆柱涡振振幅分支的影响</a>，作者机构公开稿；不将其数据移植为本页箱梁标定。</li>
+    </ol>
+  </section>
+  <footer>资料与模型说明更新：2026-10-27。文献用于解释机理、构造与适用边界；未把特定桥梁的性能数值移植为课堂效果。</footer>
+</main>
+</body>
+</html>
