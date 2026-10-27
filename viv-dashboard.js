@@ -23,10 +23,11 @@ const spectrumCard=document.createElement('section');spectrumCard.id='viv-spectr
 const lockCard=document.createElement('section');lockCard.id='viv-lockin-card';lockCard.className='viv-chart-card';
 lockCard.innerHTML=`<div class="viv-card-heading"><h3>④ 走过几个风速，找频率平台</h3><button id="viv-start-lockin-lock">重新开始扫风速对照</button></div>
 ${windMarkup('viv-wind-lock')}
+<canvas id="viv-lockin-frequency" aria-label="自己的风速记录：固定圆柱升力频率与可动圆柱升力、位移频率"></canvas><p class="viv-frequency-legend">虚线：升力频率 · 实线：位移频率 · 空心点：当前估计</p>
 <div class="viv-chart-controls"><label><input type="checkbox" id="viv-lockin-auto" checked> 数据充分后自动记录此风速</label><button id="viv-lockin-capture">记录当前A/B风速点</button><button id="viv-lockin-clear">清空本次点</button></div>
 <p id="viv-lockin-feedback" class="viv-record-feedback" aria-live="polite">停稳一个风速后再比较；快拖滑块只能看过渡过程。</p>
 <div class="viv-chart-controls"><label>记录图 <select id="viv-lockin-data"><option value="live" selected>我的扫风速记录</option><option value="reference">标准8格参考 · 独立起算（非本次实验）</option></select></label></div>
-<p id="viv-lockin-source"></p><canvas id="viv-lockin-frequency" aria-label="自己的风速记录：固定圆柱升力频率与可动圆柱升力、位移频率"></canvas><canvas id="viv-lockin-amplitude" aria-label="自己的风速记录：窗内振幅随约化风速变化"></canvas><p id="viv-lockin-status" class="viv-lock-status"></p>
+<p id="viv-lockin-source"></p><canvas id="viv-lockin-amplitude" aria-label="自己的风速记录：窗内振幅随约化风速变化"></canvas><p id="viv-lockin-status" class="viv-lock-status"></p>
 <p class="helper">先看：风速继续增加时，A、B的升力频率是否都继续增加？再看：B的升力与位移频率是否在几个相邻风速下保持接近？图上空心点是当前观察，实心点才是已记录的可靠频率。</p>
 <details><summary>完成观察后，再看判据与参数解释</summary><p>锁定意味着一段风速内尾流与运动持续同步。页面只在至少3个同条件相邻记录点满足频率筛查后标出候选范围；不是精确边界或实桥预测。还要考察相位、幅值持续性和扫速方向。</p><p>横轴Uᵣ=U/(fₙD)，纵轴为fL/fₙ和fy/fₙ。固定圆柱没有运动频率，A组只作自然脱涡对照，不能被判断为锁定。</p><p>箱梁m*=m/(ρD²)，圆柱m*=4m/(πρD²)。Sc=4πmζ/(ρD²)；改变质量也会改变fₙ。Re_ref固定时，实际Re随风速变化。保持其余参数不变，每个风速至少积累10个周期；不要把不断扫动时的混合时程当作稳态。</p><p>初次从均匀流启动，先发展至t*=240再正式取点；每次变速另等待20个无量纲时间，再用同一风速的记录。实时频率读数不是已经稳态的证明。取点使用独立的最近120时间窗，不随上方频谱的显示窗口改变；还检查前后半窗频率及振幅。标准8格参考是独立起算，不能直接与快速6格数值比较。</p></details><div id="viv-lockin-table" class="table-scroll"></div>`;spectrumCard.after(lockCard);
 function setup(id){const cv=$(id),r=cv.getBoundingClientRect(),dpr=Math.min(devicePixelRatio||1,2),w=Math.max(1,r.width),h=Math.max(1,r.height);cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr);const c=cv.getContext('2d');c.setTransform(dpr,0,0,dpr,0,0);return{c,w,h};}
@@ -110,7 +111,7 @@ function syncWindControls(value=pendingSpeed??+$('viv-u').value){
 function renderWind(){
  syncWindControls();const reads=currentReadings(),a=reads[0],b=reads[1],fn=b?.f?.fn;
  const cell=(label,value,note,tone)=>`<div class="${tone||''}"><small>${label}</small><strong>${fmt(value)}</strong><span>${note}</span></div>`;
- const html=cell(a?.f?.fixed?'A 固定 · 升力 fL':'A 升力频率 fL',a?.fl,Number.isFinite(a?.fl)?'fL/fₙ = '+fmt(a.fl/a.f.fn,2):'至少积累3周期','viv-read-a')+cell(b?.f?.fixed?'B 固定 · 升力 fL':'B 可动 · 升力 fL',b?.fl,Number.isFinite(b?.fl)?'fL/fₙ = '+fmt(b.fl/fn,2):'至少积累3周期','viv-read-b')+cell(b?.f?.fixed?'B 已固定 · 无运动频率':'B 位移频率 fy',b?.fy,Number.isFinite(b?.fy)?'fy/fₙ = '+fmt(b.fy/fn,2):'观察上下运动','viv-read-b')+cell('B 固有频率 fₙ',fn,'全部频率均为 fD/Uref');
+ const html=cell(a?.f?.fixed?'A 固定 · 升力 fL':'A 升力频率 fL',a?.fl,Number.isFinite(a?.fl)?'fL/fₙ = '+fmt(a.fl/a.f.fn,2):'至少积累3周期','viv-read-a')+cell(b?.f?.fixed?'B 固定 · 升力 fL':'B 可动 · 升力 fL',b?.fl,Number.isFinite(b?.fl)?'fL/fₙ = '+fmt(b.fl/fn,2):'至少积累3周期','viv-read-b')+cell(b?.f?.fixed?'B 已固定 · 无运动频率':'B 位移频率 fy',b?.fy,b?.f?.fixed?'不定义运动频率':Number.isFinite(b?.fy)?'fy/fₙ = '+fmt(b.fy/fn,2):'观察上下运动','viv-read-b')+cell('B 固有频率 fₙ',fn,'全部频率均为 fD/Uref');
  const elapsed=residence.settledAt===null?0:Math.max(0,nowTime()-residence.settledAt),usable=Math.max(0,Math.min(elapsed-SETTLE_TIME,120)),minimumF=Math.min(...reads.flatMap(r=>[r.f.fn,r.fl||r.f.fn,...(!r.f.fixed?[r.fy||r.f.fn]:[])])),cycles=Number.isFinite(minimumF)?usable*minimumF:0;
  let note;
  if(pendingSpeed!==null||!windSettled())note='正在调节来流；停在一个风速，让尾流与频率重新发展。';

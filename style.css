@@ -52,3 +52,7 @@
  .viv-wind-endpoints{padding:0 51px}.viv-wind-experiment h3{font-size:15px}
  #viv-lockin-card .viv-card-heading h3{font-size:15px;line-height:1.45}
 }
+
+#viv-lockin-card .viv-frequency-legend{font-size:11px;line-height:1.5;margin:5px 0 13px} @media(max-width:650px){#viv-lockin-card .viv-live-frequencies{grid-template-columns:repeat(4,minmax(0,1fr));gap:4px}#viv-lockin-card .viv-live-frequencies>div{padding:6px 4px}#viv-lockin-card .viv-live-frequencies small{font-size:10px;min-height:30px}#viv-lockin-card .viv-live-frequencies strong{font-size:17px}#viv-lockin-card .viv-live-frequencies span{font-size:9px}}
+
+@media(max-width:760px){#viv-live-fields,#viv-time-slot,#viv-spectrum-card,#viv-lockin-card{scroll-margin-top:0}}
