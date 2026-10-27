@@ -14,3 +14,41 @@
 .viv-field-tools,.viv-chart-controls,.viv-card-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.viv-field-tools{margin:10px 0}.viv-field-tools p{flex:1;font-size:12px;color:#597987;margin:0}.viv-field-tools label,.viv-chart-controls label{font-size:12px;display:flex;align-items:center;gap:8px}.viv-field-tools select{width:170px}.viv-chart-controls select{width:auto;min-width:95px;min-height:42px}.viv-chart-controls{justify-content:flex-start;margin:10px 0}.viv-chart-controls>span{font-size:12px;color:#66808c}.viv-chart-card{border:1px solid #d9e5e9;border-radius:9px;padding:15px;margin-top:15px;background:#fff}.viv-chart-card h3{font-size:17px;margin:0}.viv-chart-card>canvas{width:100%;height:235px;display:block;margin-top:10px}.viv-chart-card>p{font-size:12px;line-height:1.8;color:#587584}.viv-card-heading>span{font-size:13px}.dot-a,.dot-b{display:inline-block;width:14px;height:3px;background:#24759e;vertical-align:middle;margin:0 5px}.dot-b{background:#d48132}.viv-peak-readout{display:grid;grid-template-columns:1fr 1fr;gap:10px}.viv-peak-readout>div{background:#f1f7fa;border-radius:6px;padding:10px;display:grid;font-size:13px}.viv-peak-readout>div+div{background:#fff5e9}.viv-peak-readout small{font-size:11px;color:#607d89}.viv-lock-status{padding:10px 12px;border-left:3px solid #137e81;background:#edf7f6}.viv-chart-card details{font-size:13px;margin:12px 0}.viv-chart-card summary{cursor:pointer;min-height:38px}.viv-chart-card button{min-height:44px}.viv-chart-card #viv-lockin-amplitude{height:190px}#viv-time-slot{margin-top:16px}#viv-time-slot .plot-card{box-shadow:none}body[data-mode=viv] .experiment>.analysis-grid{display:none}body[data-mode=viv] #viv-live-fields .view-card>canvas{height:265px;aspect-ratio:auto}body[data-mode=viv] .view-footer{font-size:11px}#motion-detail .frequency-readout{margin-top:12px}#motion-detail[open]{margin-bottom:14px}
 @media(max-width:760px){.viv-field-tools{display:block}.viv-field-tools label{margin-top:9px;justify-content:space-between}.viv-chart-controls{gap:9px}.viv-chart-controls label{flex:1;justify-content:space-between;font-size:12px}.viv-chart-controls select{min-width:110px;max-width:185px}.viv-chart-card{padding:11px}.viv-chart-card>canvas{height:245px}.viv-peak-readout{gap:6px}.viv-peak-readout>div{font-size:12px;padding:8px}.viv-peak-readout small{font-size:11px}body[data-mode=viv] #viv-live-fields .view-card>canvas{height:255px!important}body[data-mode=viv] #viv-live-fields .metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));padding:9px 8px}body[data-mode=viv] #viv-live-fields .metric{display:block;min-width:0}body[data-mode=viv] #viv-live-fields .metric span{white-space:normal;font-size:11px}body[data-mode=viv] #viv-live-fields .metric strong{font-size:17px}.viv-chart-card .viv-chart-controls{display:grid;grid-template-columns:1fr}.viv-chart-card .viv-chart-controls label{justify-content:space-between}.viv-chart-card #viv-lockin-amplitude{height:210px}.viv-chart-card .table-scroll{margin-top:10px}}
 .viv-jump{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.viv-jump a{border:1px solid #c9dde3;border-radius:6px;padding:8px 11px;background:#eff7f8;font-size:13px;min-height:42px;display:flex;align-items:center}#viv-live-fields,#viv-time-slot,#viv-spectrum-card,#viv-lockin-card{scroll-margin-top:86px}@media(max-width:760px){.viv-jump{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px}.viv-jump a{font-size:12px;padding:6px 3px;justify-content:center;line-height:1.4;text-align:center}}
+/* Hands-on wind sweep: controls stay beside both the flow and the record plot. */
+.viv-wind-experiment{border:1px solid #c9dde5;border-radius:12px;background:#f4f9fb;padding:14px;margin:12px 0;min-width:0}
+.viv-wind-experiment .viv-card-heading{align-items:center;gap:10px;flex-wrap:wrap}
+.viv-wind-experiment h3{font-size:16px;margin:0}
+.viv-wind-intro{font-size:12px;line-height:1.65;color:#456b7c;margin:9px 0 13px}
+.viv-wind-bar{min-width:0;margin:10px 0 14px}
+.viv-wind-heading{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.viv-wind-heading label{font-size:14px;font-weight:650;color:#274f63}
+.viv-wind-heading output{font:700 25px Consolas,monospace;color:#246f95;font-variant-numeric:tabular-nums}
+.viv-wind-input{display:flex;gap:12px;align-items:center;margin:9px 0 2px;min-width:0}
+.viv-wind-input button{flex:0 0 42px;min-height:42px;padding:0;font-size:24px;line-height:1;background:white;border:1px solid #b8d2df;border-radius:8px;color:#236b8d;touch-action:manipulation}
+.viv-wind-input input[type=range]{flex:1;width:0;min-width:0;min-height:40px;margin:0;accent-color:#24759e;cursor:ew-resize}
+.viv-wind-endpoints{display:flex;justify-content:space-between;padding:0 54px;font-size:11px;color:#688795}
+.viv-live-frequencies{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin-top:13px}
+.viv-live-frequencies>div{border:1px solid #d9e5ea;background:#fff;border-radius:8px;padding:9px 10px;display:flex;flex-direction:column;min-width:0}
+.viv-live-frequencies small{font-size:11px;line-height:1.45;color:#5f7e8c}
+.viv-live-frequencies strong{font:700 20px Consolas,Microsoft YaHei,monospace;color:#416373;line-height:1.6;overflow-wrap:anywhere}
+.viv-live-frequencies span{font-size:10px;line-height:1.5;color:#6b8794}
+.viv-live-frequencies .viv-read-a{border-top:3px solid #24759e}
+.viv-live-frequencies .viv-read-b{border-top:3px solid #d48132}
+.viv-live-frequencies .viv-read-a strong{color:#24759e}.viv-live-frequencies .viv-read-b strong{color:#b66a26}
+.viv-hold-track{height:4px;overflow:hidden;background:#dce9ed;border-radius:3px;margin-top:12px}
+.viv-hold-track>span{height:100%;display:block;width:0;background:#408b9b;transition:width .25s linear}
+.viv-hold-note{font-size:11px;line-height:1.6;color:#597b8b;margin:6px 0 0}
+.viv-record-feedback{background:#edf6f6;border-left:3px solid #589c9c;padding:8px 10px;color:#315c69;font-size:12px;line-height:1.6}
+#viv-lockin-card>.viv-chart-controls label:has(input[type=checkbox]){display:flex;align-items:center;gap:7px;font-size:12px}
+#viv-lockin-auto{width:17px;height:17px;accent-color:#24759e}
+#viv-lockin-card .viv-card-heading{flex-wrap:wrap;gap:9px}
+#viv-start-lockin-top,#viv-start-lockin-lock{font-size:11px;padding:7px 10px;border:1px solid #a8cbd7;color:#28657e;border-radius:7px;background:white;min-height:35px}
+@media(max-width:650px){
+ .viv-wind-experiment{padding:11px;margin:10px 0}
+ .viv-live-frequencies{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+ .viv-live-frequencies>div{padding:7px 9px}
+ .viv-live-frequencies strong{font-size:21px}
+ .viv-wind-heading label{font-size:13px}.viv-wind-input{gap:9px}
+ .viv-wind-endpoints{padding:0 51px}.viv-wind-experiment h3{font-size:15px}
+ #viv-lockin-card .viv-card-heading h3{font-size:15px;line-height:1.45}
+}
